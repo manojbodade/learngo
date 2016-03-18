@@ -1,0 +1,36 @@
+<head><title>{{.Title}}</title></head>
+<p>
+<a href="{{BaseUrl}}notes/add" >Add Note</a>
+</p>
+<!--{{.data }}-->
+<div>
+<table border="1">
+<tr>
+<th>Title</th>
+<th>Description</th>
+<th>Created On</th>
+<th>Actions</th>
+</tr>
+{{range $key,$value := .data }}
+<tr>
+<td> {{$value.Title}}</td>
+<td>{{$value.Description}}</td>
+<td>{{$value.CreateOn}}</td>
+<td>
+<a href="#" onclick="edit('{{$key}}')" >Edit</a> |
+<a href="#"  onclick="del('{{$key}}')" >Delete</a>
+</td>
+</tr>
+{{end}}
+</table>
+
+<script type="text/javascript">
+function edit(p){
+	console.log("Edit -> "+p);
+	window.location="{{BaseUrl}}notes/edit?id="+p;
+}
+function del(p){
+	console.log("Delete => "+p);
+	window.location="{{BaseUrl}}notes/delete?id="+p;
+}
+</script>

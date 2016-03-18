@@ -1,0 +1,172 @@
+<head>
+  <meta charset="utf-8">
+  <title>HRMS : Employees</title>
+  <style type="text/css" media="screen">
+    a:visited, hover,active{
+      color : blue;
+    }
+
+  </style>
+</head>
+  <div style="height:60px;background-color:#c0c0c0;text-align:center; ">
+    <span style="font-size:14;font-weight:bold;">HRMS - Employees</span>
+  </div>
+  <div style="text-align:center;">
+    <a href="{{BaseUrl}}home/default">Home</a>&nbsp;&nbsp;&nbsp;
+    <a href="{{BaseUrl}}emp/default">Employee</a>&nbsp;&nbsp;&nbsp;
+    <a href="{{BaseUrl}}master/default">Master</a>&nbsp;&nbsp;&nbsp;
+    <a href="{{BaseUrl}}logout/default">Logout</a>&nbsp;&nbsp;&nbsp;
+  </div>
+
+  <div class="panel panel-primary" style="margin:5px auto;">
+    <div class="page-header-actions">
+      <button class="btn btn-primary btn-blue btn-sm" onclick="add()">
+        <i class="fa fa-plus"></i>&nbsp;
+        <span>Add New DID</span>
+      </button>
+    </div>
+    <div class="panel-body">
+      <div id="grid">
+      </div>
+    </div>
+  </div>
+  <div class="modal fade modal-fade-in-scale-up" id="modalForm" aria-hidden="true" aria-labelledby="modalTitle" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <h4 class="modal-title">Form Employee</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-input row" data-bind="with: model.Emp()">
+            <input type="hidden" id="Id" name="Id" data-bind="value: Id" />
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">First Name</label>
+              <div class="control-input col-md-6">
+                <input type="text" name="FirstName" id="FirstName" class="input-sm form-control" data-bind="value: FirstName"  />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">Last Name</label>
+              <div class="control-input col-md-6">
+                <input type="text" name="LastName" id="LastName" class="input-sm form-control" data-bind="value: LastName"  />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">Address</label>
+              <div class="control-input col-md-6">
+                <textarea name="Address" data-bind="text: Address"></textarea>
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">City</label>
+              <div class="control-input col-md-6">
+                <input type="text" name="City" id="City" class="input-sm form-control" data-bind="value: City"  />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">Province</label>
+              <div class="control-input col-md-6">
+                <input type="text" name="Province" id="Province" class="input-sm form-control" data-bind="value: Province"  />
+              </div>
+            </div>
+            <div class="form-group col-md-12">
+              <label class="control-label col-md-4">Skills</label>
+              <div class="control-input col-md-6">
+                <input type="text" name="Skills" id="Skills" class="input-sm form-control" data-bind="value: Skills"  />
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="save()">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+  <script type="text/javascript" >
+    var grid;
+    model.Emp = ko.observable();
+    var ds = new kendo.data.DataSource({
+      transport: {
+        read: "{{BaseUrl}}emp/read"
+      },
+      // schema: {
+      //   data: "data",
+      //   total: "count"
+      // },
+      autoSync: false,
+      pageSize: 10,
+      serverFiltering: false,
+      serverSorting: false,
+      serverPaging: false
+    });
+    function gridLoad() {
+      grid = $("#grid").kendoGrid({
+        columns: [
+          {field: "Nik", width: 120, title: "NIK", template: "<a class='grid-select' href='javascript:edit(\"#: Id #\")'>#: Nik #</a>"},
+          {field: "FirstName", title: "First Name"},
+          {field: "LastName", title: "Last Name"},
+          {field: "Address", title: "Address"},
+          {field: "City", width: 150, title: "City"},
+          {field: "Province", title: "Province"},
+          {field: "Skills", title: "Skills", template:"#=tmplSkill(Skills)#"}
+        ],
+        groupable: false, filterable: true, sortable: true, pageable: true, dataSource: ds
+      });
+    }
+    function reloadGrid() {
+      $('#grid').data('kendoGrid').dataSource.read();
+      $('#grid').data('kendoGrid').refresh();
+    }
+    function tmplSkill(v){
+      return v.join("; ");
+    }
+    function add(){
+      var values = {
+        Id: "",
+        FirstName: "",
+        LastName: "",
+        Address: "",
+        City: "",
+        Province: "",
+        Skills: []
+      };
+        model.Emp(values);
+      $("#modalForm").modal('show');
+    }
+    function edit(v){
+     ajaxPost("{{BaseUrl}}emp/get",{id:v},
+      function(d){
+        if (d != null) {
+          var values = {
+            Id: d.Id,
+            FirstName: d.FirstName,
+            LastName: d.LastName,
+            Address: d.Address,
+            City: d.City,
+            Province: d.Province,
+            Skills: d.Skills
+          };
+            model.Emp(values);
+            $("#modalForm").modal('show');
+          }
+          else {
+            alert('Data not found!');
+          }
+      },function(data){
+        alert("Invalid request to server");
+      });
+    }
+    function save(){
+      console.log(ko.toJSON(model.Emp));
+    }
+    $(document).ready(function() {
+      gridLoad();
+      reloadGrid();
+    });
+  </script>
