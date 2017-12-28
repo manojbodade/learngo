@@ -1,0 +1,14 @@
+get host list:
+/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/rack_info,Hosts/host_name,Hosts/maintenance_state,Hosts/public_host_name,Hosts/cpu_count,Hosts/ph_cpu_count,Hosts/last_agent_env,alerts_summary,Hosts/host_status,Hosts/last_heartbeat_time,Hosts/ip,host_components/HostRoles/state,host_components/HostRoles/maintenance_state,host_components/HostRoles/stale_configs,host_components/HostRoles/service_name,host_components/HostRoles/display_name,host_components/HostRoles/desired_admin_state,metrics/disk,metrics/load/load_one,Hosts/total_mem,stack_versions/HostStackVersions,stack_versions/repository_versions/RepositoryVersions/repository_version,stack_versions/repository_versions/RepositoryVersions/id,stack_versions/repository_versions/RepositoryVersions/display_name&minimal_response=true,host_components/logging
+
+curl:
+curl '/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/rack_info,Hosts/host_name,Hosts/maintenance_state,Hosts/public_host_name,Hosts/cpu_count,Hosts/ph_cpu_count,Hosts/last_agent_env,alerts_summary,Hosts/host_status,Hosts/last_heartbeat_time,Hosts/ip,host_components/HostRoles/state,host_components/HostRoles/maintenance_state,host_components/HostRoles/stale_configs,host_components/HostRoles/service_name,host_components/HostRoles/display_name,host_components/HostRoles/desired_admin_state,metrics/disk,metrics/load/load_one,Hosts/total_mem,stack_versions/HostStackVersions,stack_versions/repository_versions/RepositoryVersions/repository_version,stack_versions/repository_versions/RepositoryVersions/id,stack_versions/repository_versions/RepositoryVersions/display_name&minimal_response=true,host_components/logging&sortBy=Hosts/host_name.asc'
+
+'/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/host_name,Hosts/ip,Hosts/cpu_count,Hosts/ph_cpu_count,metrics/disk,Hosts/total_mem,Hosts/host_status,host_components/HostRoles/state,host_components/HostRoles/maintenance_state,host_components/HostRoles/stale_configs,host_components/HostRoles/service_name,host_components/HostRoles/display_name&sortBy=Hosts/host_name.asc'
+
+get host list ip and name:
+'/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/host_name,Hosts/ip&sortBy=Hosts/host_name.asc'
+
+'/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/host_name,Hosts/ip,host_components/HostRoles/service_name,host_components/HostRoles/state&sortBy=Hosts/host_name.asc'
+
+'/api/v1/clusters/STANCDEV1TDH/hosts?fields=Hosts/host_name,Hosts/ip,host_components/HostRoles/service_name,host_components/HostRoles/state,metrics&sortBy=Hosts/host_name.asc'
