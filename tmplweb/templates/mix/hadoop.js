@@ -146,13 +146,14 @@ function OpcLineChart(name, id ,data) {
         return _.map(data, function(d) {
             return {
                 Val: (d.Val / 1048576).toFixed(2),
-                Ts: d.Ts
+                Ts: d.Ts,
+                Tst: d.Tst
             }
         })
     }
     self.formatCategories = function(data) {
         return _.map(data, function(d) {
-            var date = new Date();
+            var date = new Date(0);
             date.setUTCSeconds(d.Ts);
             return moment(date).format("HH:mm");
         })
