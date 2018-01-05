@@ -166,6 +166,7 @@ function OpcLineChart(name, id ,data) {
         var categories= self.formatCategories(data.Timeline);
         selector.html("");
         self.series = self.formatData(data.Timeline);
+        var dataPeak = _.maxBy(self.series, function(o) { return o.Val });
         selector.kendoSparkline({
             data: self.series,
             plotAreaClick: function() {
@@ -184,7 +185,7 @@ function OpcLineChart(name, id ,data) {
             },
             valueAxis:{
                 visible: true,
-                majorUnit: 0.5,
+                majorUnit: Math.round((parseFloat(dataPeak.Val) / 3) * 100) / 100,
                 plotBands: [
                     {
                         from: max,
