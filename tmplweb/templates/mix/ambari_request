@@ -1,6 +1,0 @@
-
-http://35.168.145.74:8080/api/v1/clusters/echdp01/hosts/dg1356/host_components/NAMENODE?fields=metrics/dfs/namenode&_=1515469121088
-
-
-metrics hosts
-http://35.168.145.74:8080/api/v1/clusters/echdp01/hosts/dg1358?fields=metrics/cpu/cpu_user[1515465512,1515469112,15],metrics/cpu/cpu_wio[1515465512,1515469112,15],metrics/cpu/cpu_nice[1515465512,1515469112,15],metrics/cpu/cpu_aidle[1515465512,1515469112,15],metrics/cpu/cpu_system[1515465512,1515469112,15],metrics/cpu/cpu_idle[1515465512,1515469112,15],metrics/disk/disk_total[1515465512,1515469112,15],metrics/disk/disk_free[1515465512,1515469112,15],metrics/load/load_fifteen[1515465512,1515469112,15],metrics/load/load_one[1515465512,1515469112,15],metrics/load/load_five[1515465512,1515469112,15],metrics/memory/swap_free[1515465512,1515469112,15],metrics/memory/mem_shared[1515465512,1515469112,15],metrics/memory/mem_free[1515465512,1515469112,15],metrics/memory/mem_cached[1515465512,1515469112,15],metrics/memory/mem_buffers[1515465512,1515469112,15],metrics/network/bytes_in[1515465512,1515469112,15],metrics/network/bytes_out[1515465512,1515469112,15],metrics/network/pkts_in[1515465512,1515469112,15],metrics/network/pkts_out[1515465512,1515469112,15],metrics/process/proc_total[1515465512,1515469112,15],metrics/process/proc_run[1515465512,1515469112,15]&_=1515469112108
