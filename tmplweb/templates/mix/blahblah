@@ -1,0 +1,9 @@
+rm dtvsmemcpucollector
+go build -o dtvsmemcpucollector main_memcpu_collector.go
+rm dtvsclusterinfocollector
+go build -o dtvsclusterinfocollector main_clusterinfo_collector.go
+rm dtvsnodeinfocollector
+go build -o dtvsnodeinfocollector main_nodeinfo_collector.go
+rm dtvsdgpasscollector
+go build -o dtvsdgpasscollector main_nodedgpassport_collector.go
+
