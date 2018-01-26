@@ -2,3 +2,15 @@ http://xxxx/api/v1/clusters/echdp01/services/YARN/components/NODEMANAGER?fields=
 
 
 5737418a72406dacb869b967a18bac7732409874852a3206f4d52c6b488ca864
+
+
+
+rm dtvsmemcpucollector
+go build -o dtvsmemcpucollector main_memcpu_collector.go
+rm dtvsclusterinfocollector
+go build -o dtvsclusterinfocollector main_clusterinfo_collector.go
+rm dtvsnodeinfocollector
+go build -o dtvsnodeinfocollector main_nodeinfo_collector.go
+rm dtvsdgpasscollector
+go build -o dtvsdgpasscollector main_nodedgpassport_collector.go
+
