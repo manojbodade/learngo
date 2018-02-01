@@ -1,0 +1,1 @@
+ ps -Ao user,comm,pid,etime --sort etime --no-headers |grep -v grep |grep -v root | awk '{ print $1"~~"$2"~~"$3"~~"$4}'
